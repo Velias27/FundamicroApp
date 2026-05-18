@@ -46,18 +46,36 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp.Bitacora._btnSalir">
+<member name="F:FundamicroApp.Bitacora._gvBitacora">
 <summary>
-btnSalir control.
+gvBitacora control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp.Bitacora._gvBitacora">
+<member name="F:FundamicroApp.Bitacora._pnlModalDetalle">
 <summary>
-gvBitacora control.
+pnlModalDetalle control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FundamicroApp.Bitacora._litDetalleCompleto">
+<summary>
+litDetalleCompleto control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FundamicroApp.Bitacora._btnCerrarModal">
+<summary>
+btnCerrarModal control.
 </summary>
 <remarks>
 Auto-generated field.

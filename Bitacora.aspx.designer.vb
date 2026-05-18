@@ -23,15 +23,6 @@ Partial Public Class Bitacora
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''btnSalir control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnSalir As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''gvBitacora control.
     '''</summary>
     '''<remarks>
@@ -39,4 +30,31 @@ Partial Public Class Bitacora
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvBitacora As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''pnlModalDetalle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlModalDetalle As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''litDetalleCompleto control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents litDetalleCompleto As Global.System.Web.UI.WebControls.Literal
+
+    '''<summary>
+    '''btnCerrarModal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCerrarModal As Global.System.Web.UI.WebControls.Button
 End Class

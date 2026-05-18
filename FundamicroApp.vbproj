@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Bitacora.aspx" />
+    <Content Include="Content\bitacora.css" />
     <Content Include="Content\clientes.css" />
     <Content Include="Content\login.css" />
     <Content Include="Clientes.aspx" />
