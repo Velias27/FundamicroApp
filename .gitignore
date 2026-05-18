@@ -1,18 +1,5 @@
-﻿# Excluir carpetas de compilación
-[Bb]in/
-[Oo]bj/
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
 
-# Excluir archivos de configuración de usuario de Visual Studio
-.vs/
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
-# Excluir paquetes de NuGet restaurados localmente
-packages/
-*.nupkg
-
-# Excluir base de datos local
-App_Data/**/*.mdf
-App_Data/**/*.ldf
+/.vs
