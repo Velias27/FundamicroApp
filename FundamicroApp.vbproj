@@ -92,20 +92,14 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".gitignore" />
     <Content Include="Bitacora.aspx" />
+    <Content Include="Content\login.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include=".gitignore.designer.vb">
-      <DependentUpon>.gitignore.vb</DependentUpon>
-    </Compile>
-    <Compile Include=".gitignore.vb">
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="App_Code\Services\BitacoraService.vb" />
     <Compile Include="App_Code\Services\HashHelper.vb" />
     <Compile Include="App_Code\Services\AuthService.vb" />
