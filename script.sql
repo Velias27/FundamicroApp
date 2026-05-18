@@ -135,3 +135,35 @@ GO
 INSERT INTO Usuarios (Username, PasswordHash, NombreCompleto)
 VALUES ('admin', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Administrador Sistema');
 GO
+
+--Agregamos la columna 'Activo'
+ALTER TABLE Clientes 
+ADD Activo BIT DEFAULT 1 NOT NULL;
+GO
+
+--Modificamos el Procedimiento Almacenado de Eliminar
+ALTER PROCEDURE sp_Clientes_Eliminar
+    @ClienteID INT, 
+    @Username VARCHAR(50)
+AS
+BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;
+        
+        -- Registramos en la bitácora igual que antes
+        INSERT INTO Bitacora (Accion, ClienteID, DetalleCambio, Username)
+        VALUES ('ELIMINAR', @ClienteID, 'Borrado del cliente', @Username);
+        
+        -- EL CAMBIO MAESTRO: En lugar de DELETE, hacemos UPDATE
+        UPDATE Clientes 
+        SET Activo = 0 
+        WHERE ClienteID = @ClienteID;
+        
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END;
+GO

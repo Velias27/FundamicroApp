@@ -9,7 +9,7 @@ Namespace Services
         Public Function ObtenerClientes() As DataTable
             Dim dt As New DataTable()
             Using conn As New SqlConnection(connString)
-                Dim query As String = "SELECT * FROM Clientes ORDER BY ClienteID DESC"
+                Dim query As String = "SELECT ClienteID, Nombres, Apellidos, DocumentoIdentidad, Telefono, Email FROM Clientes WHERE Activo = 1 ORDER BY ClienteID DESC"
                 Using cmd As New SqlCommand(query, conn)
                     Using adapter As New SqlDataAdapter(cmd)
                         adapter.Fill(dt)
