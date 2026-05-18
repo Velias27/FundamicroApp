@@ -64,7 +64,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._form1">
+<member name="F:FundamicroApp.Clientes._form1">
 <summary>
 form1 control.
 </summary>
@@ -73,7 +73,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._btnSalir">
+<member name="F:FundamicroApp.Clientes._btnSalir">
 <summary>
 btnSalir control.
 </summary>
@@ -82,7 +82,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._btnNuevo">
+<member name="F:FundamicroApp.Clientes._btnNuevo">
 <summary>
 btnNuevo control.
 </summary>
@@ -91,7 +91,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._lblMensaje">
+<member name="F:FundamicroApp.Clientes._lblMensaje">
 <summary>
 lblMensaje control.
 </summary>
@@ -100,7 +100,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._gvClientes">
+<member name="F:FundamicroApp.Clientes._gvClientes">
 <summary>
 gvClientes control.
 </summary>
@@ -109,7 +109,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._pnlFormulario">
+<member name="F:FundamicroApp.Clientes._pnlFormulario">
 <summary>
 pnlFormulario control.
 </summary>
@@ -118,7 +118,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._hfID">
+<member name="F:FundamicroApp.Clientes._hfID">
 <summary>
 hfID control.
 </summary>
@@ -127,7 +127,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._txtNombres">
+<member name="F:FundamicroApp.Clientes._txtNombres">
 <summary>
 txtNombres control.
 </summary>
@@ -136,7 +136,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._txtApellidos">
+<member name="F:FundamicroApp.Clientes._txtApellidos">
 <summary>
 txtApellidos control.
 </summary>
@@ -145,7 +145,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._txtDoc">
+<member name="F:FundamicroApp.Clientes._txtDoc">
 <summary>
 txtDoc control.
 </summary>
@@ -154,7 +154,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._txtTel">
+<member name="F:FundamicroApp.Clientes._txtTel">
 <summary>
 txtTel control.
 </summary>
@@ -163,7 +163,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._txtEmail">
+<member name="F:FundamicroApp.Clientes._txtEmail">
 <summary>
 txtEmail control.
 </summary>
@@ -172,7 +172,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._btnCancelar">
+<member name="F:FundamicroApp.Clientes._btnCancelar">
 <summary>
 btnCancelar control.
 </summary>
@@ -181,7 +181,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:FundamicroApp._Default._btnGuardar">
+<member name="F:FundamicroApp.Clientes._btnGuardar">
 <summary>
 btnGuardar control.
 </summary>
@@ -193,15 +193,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FundamicroApp.Login._form1">
 <summary>
 form1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:FundamicroApp.Login._lblError">
-<summary>
-lblError control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -220,6 +211,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:FundamicroApp.Login._txtPassword">
 <summary>
 txtPassword control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:FundamicroApp.Login._lblError">
+<summary>
+lblError control.
 </summary>
 <remarks>
 Auto-generated field.

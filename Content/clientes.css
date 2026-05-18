@@ -1,0 +1,64 @@
+﻿/* Content/clientes.css */
+
+body {
+    background-color: #F2F2F2;
+    min-height: 100vh;
+}
+
+.navbar-custom {
+    background-color: #1C2540;
+    border-bottom: 4px solid #F2BD1D;
+    padding: 0.75rem 1.5rem;
+}
+
+.card-custom {
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.5rem 1rem rgba(28, 37, 64, 0.08);
+}
+
+.table-custom th {
+    background-color: #1C2540 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-custom-primary {
+    background-color: #F29422;
+    color: #ffffff;
+    border: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+    .btn-custom-primary:hover {
+        background-color: #F2A922;
+        color: #1C2540;
+    }
+
+.btn-custom-accent {
+    background-color: #F2BD1D;
+    color: #1C2540;
+    border: none;
+    font-weight: 500;
+}
+
+.btn-custom-accent:hover {
+    background-color: #F2A922;
+}
+
+.modal-overlay-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(28, 37, 64, 0.6);
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

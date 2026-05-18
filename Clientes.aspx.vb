@@ -1,6 +1,6 @@
 ﻿Imports FundamicroApp.Services
 
-Partial Class _Default
+Public Class Clientes
     Inherits System.Web.UI.Page
     Private ReadOnly svc As New ClienteService()
 
@@ -29,15 +29,19 @@ Partial Class _Default
         If e.CommandName = "Editar" Then
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = gvClientes.Rows(index)
-            hfID.Value = gvClientes.DataKeys(index).Value.ToString()
+            hfID.Value = gvClientes.DataKeys(index).Values("ClienteID").ToString()
             txtNombres.Text = Server.HtmlDecode(row.Cells(1).Text)
             txtApellidos.Text = Server.HtmlDecode(row.Cells(2).Text)
             txtDoc.Text = Server.HtmlDecode(row.Cells(3).Text)
             Dim tel As String = Server.HtmlDecode(row.Cells(4).Text)
             txtTel.Text = If(tel = "&nbsp;" OrElse tel.Trim() = "", "", tel)
+            Dim correoObj As Object = gvClientes.DataKeys(index).Values("Email")
+            txtEmail.Text = If(correoObj IsNot Nothing AndAlso Not IsDBNull(correoObj), correoObj.ToString(), "")
             pnlFormulario.Visible = True
         ElseIf e.CommandName = "Eliminar" Then
             svc.EliminarCliente(Convert.ToInt32(e.CommandArgument), User.Identity.Name)
+            lblMensaje.Visible = True
+            lblMensaje.CssClass = "d-block mb-3 p-2 rounded text-center alert alert-success"
             lblMensaje.Text = "Cliente eliminado. Acción registrada en bitácora."
             CargarGrid()
         End If
@@ -48,7 +52,9 @@ Partial Class _Default
         Dim accion As String = If(id = 0, "AGREGAR", "EDITAR")
         svc.GuardarCliente(id, txtNombres.Text, txtApellidos.Text, txtDoc.Text, txtEmail.Text, txtTel.Text, User.Identity.Name, accion)
         pnlFormulario.Visible = False
-        lblMensaje.Text = "Operación exitosa. Acción registrada en bitácora por: " & User.Identity.Name
+        lblMensaje.Visible = True
+        lblMensaje.CssClass = "d-block mb-3 p-2 rounded text-center alert alert-success"
+        lblMensaje.Text = "Operación exitosa. Acción registrada en bitácora."
         CargarGrid()
     End Sub
 

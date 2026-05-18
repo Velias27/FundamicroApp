@@ -10,7 +10,7 @@
         <nav class="navbar navbar-dark bg-dark mb-4 px-3">
             <span class="navbar-brand">Fundamicro - Auditoría del Sistema</span>
             <div>
-                <a href="Default.aspx" class="btn btn-outline-light btn-sm me-2">Volver a Clientes</a>
+                <a href="Clientes.aspx" class="btn btn-outline-light btn-sm me-2">Volver a Clientes</a>
                 <asp:Button ID="btnSalir" runat="server" Text="Cerrar Sesión" CssClass="btn btn-danger btn-sm" OnClick="btnSalir_Click" CausesValidation="false" />
             </div>
         </nav>

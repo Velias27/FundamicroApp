@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class _Default
+Partial Public Class Clientes
 
     '''<summary>
     '''form1 control.
