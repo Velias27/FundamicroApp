@@ -9,7 +9,7 @@ Partial Class Login
 
         If auth.ValidarUsuario(txtUsuario.Text.Trim(), txtPassword.Text.Trim()) Then
             FormsAuthentication.SetAuthCookie(txtUsuario.Text.Trim(), False)
-            Response.Redirect("Default.aspx", False)
+            Response.Redirect("Clientes.aspx", False)
         Else
             lblError.Text = "Credenciales incorrectas."
         End If

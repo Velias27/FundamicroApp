@@ -75,17 +75,17 @@
                             <asp:TextBox ID="txtDoc" runat="server" CssClass="form-control" Required="true"></asp:TextBox>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-muted small fw-bold">Teléfono</label>
+                            <label class="form-label text-muted small fw-bold">Teléfono (opcional)</label>
                             <asp:TextBox ID="txtTel" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-12">
-                            <label class="form-label text-muted small fw-bold">Correo Electrónico</label>
+                            <label class="form-label text-muted small fw-bold">Correo Electrónico (opcional)</label>
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer bg-white d-flex justify-content-end p-3 border-0">
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary me-2 px-4" OnClick="btnCancelar_Click" CausesValidation="false" />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary me-2 px-4" OnClick="btnCancelar_Click" CausesValidation="false" formnovalidate="formnovalidate" />
                     <asp:Button ID="btnGuardar" runat="server" Text="Guardar Registro" CssClass="btn btn-custom-primary px-4" OnClick="btnGuardar_Click" />
                 </div>
             </div>
