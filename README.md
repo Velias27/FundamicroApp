@@ -11,7 +11,7 @@ Aplicación web desarrollada en **ASP.NET (VB.NET - Web Forms)** para la gestió
 
 ## Instrucciones para Ejecución Local
 1. Clonar este repositorio.
-2. Abrir **SQL Server Management Studio**. Ejecutar el script `Fundamicro_DB_Script.sql` adjunto en la raíz para generar la base de datos, tablas y SPs.
+2. Abrir **SQL Server Management Studio**. Ejecutar el script `script.sql` adjunto en la raíz para generar la base de datos, tablas y SPs.
 3. Abrir la solución en **Visual Studio**.
 4. Modificar el archivo `Web.config` para ajustar el `Data Source` en la cadena de conexión según su servidor SQL local.
 5. Compilar la solución e iniciar.
@@ -19,3 +19,6 @@ Aplicación web desarrollada en **ASP.NET (VB.NET - Web Forms)** para la gestió
 **Credenciales de prueba por defecto:**
 * **Usuario:** `admin`
 * **Contraseña:** `1234`
+
+* **Usuario:** `fundamicro`
+* **Contraseña:** `12345`
