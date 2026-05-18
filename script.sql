@@ -22,7 +22,7 @@ CREATE TABLE Usuarios (
 );
 GO
 
--- TABLA DE CLIENTES
+-- TABLA DE CLIENTES (Preparada para Soft Delete)
 CREATE TABLE Clientes (
     ClienteID INT IDENTITY(1,1) PRIMARY KEY,
     Nombres VARCHAR(100) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE Bitacora (
 );
 GO
 
--- Índices para optimizar la auditoría en la Bitácora
+-- Índices para optimizar el rendimiento de la auditoría
 CREATE NONCLUSTERED INDEX IX_Bitacora_ClienteID ON Bitacora(ClienteID);
 CREATE NONCLUSTERED INDEX IX_Bitacora_FechaHora ON Bitacora(FechaHora);
 GO
@@ -67,102 +67,8 @@ BEGIN
 END;
 GO
 
--- 2. Gestionar Clientes (Maneja Insert, Update y Bitácora con nombres dinámicos)
+-- 2. Gestionar Clientes (Maneja Insert, Update y Auditoría a Nivel de Campo)
 CREATE PROCEDURE sp_Clientes_Guardar
-    @ClienteID INT,
-    @Nombres VARCHAR(100),
-    @Apellidos VARCHAR(100),
-    @DocumentoIdentidad VARCHAR(20),
-    @Email VARCHAR(100),
-    @Telefono VARCHAR(20),
-    @Username VARCHAR(50),
-    @Accion VARCHAR(20) -- 'AGREGAR' o 'EDITAR'
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        BEGIN TRANSACTION;
-
-        DECLARE @Detalle VARCHAR(255);
-
-        IF @Accion = 'AGREGAR'
-        BEGIN
-            INSERT INTO Clientes (Nombres, Apellidos, DocumentoIdentidad, Email, Telefono, Activo)
-            VALUES (@Nombres, @Apellidos, @DocumentoIdentidad, @Email, @Telefono, 1);
-
-            SET @ClienteID = SCOPE_IDENTITY();
-            SET @Detalle = 'Cliente creado: ' + @Nombres + ' ' + @Apellidos;
-        END
-        ELSE IF @Accion = 'EDITAR'
-        BEGIN
-            UPDATE Clientes
-            SET Nombres = @Nombres,
-                Apellidos = @Apellidos,
-                DocumentoIdentidad = @DocumentoIdentidad,
-                Email = @Email,
-                Telefono = @Telefono
-            WHERE ClienteID = @ClienteID;
-
-            SET @Detalle = 'Modificación de datos: ' + @Nombres + ' ' + @Apellidos;
-        END
-
-        INSERT INTO Bitacora (Accion, ClienteID, DetalleCambio, Username)
-        VALUES (@Accion, @ClienteID, @Detalle, @Username);
-
-        COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
-        THROW;
-    END CATCH
-END;
-GO
-
--- 3. Eliminar Cliente (Soft Delete nativo + Bitácora dinámica)
-CREATE PROCEDURE sp_Clientes_Eliminar
-    @ClienteID INT,
-    @Username VARCHAR(50)
-AS
-BEGIN
-    SET NOCOUNT ON;
-    BEGIN TRY
-        BEGIN TRANSACTION;
-
-        DECLARE @NombreCompleto VARCHAR(200);
-        SELECT @NombreCompleto = Nombres + ' ' + Apellidos 
-        FROM Clientes 
-        WHERE ClienteID = @ClienteID;
-
-        DECLARE @Detalle VARCHAR(255) = 'Borrado del cliente: ' + ISNULL(@NombreCompleto, 'Desconocido');
-
-        UPDATE Clientes 
-        SET Activo = 0 
-        WHERE ClienteID = @ClienteID;
-
-        INSERT INTO Bitacora (Accion, ClienteID, DetalleCambio, Username)
-        VALUES ('ELIMINAR', @ClienteID, @Detalle, @Username);
-
-        COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
-        THROW;
-    END CATCH
-END;
-GO
-
--- =======================================================
--- INSERCIÓN DE DATOS POR DEFECTO
--- =======================================================
-
--- Usuario: admin / Password: "1234"
-INSERT INTO Usuarios (Username, PasswordHash, NombreCompleto)
-VALUES ('admin', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Administrador Sistema');
-GO
-
-
--- Modificacion de procedimiento para detalle de editar, guardar campos modificados
-ALTER PROCEDURE sp_Clientes_Guardar
     @ClienteID INT,
     @Nombres VARCHAR(100),
     @Apellidos VARCHAR(100),
@@ -210,7 +116,7 @@ BEGIN
             IF @OldDoc <> @DocumentoIdentidad 
                 SET @Cambios += 'DUI [' + @OldDoc + ' -> ' + @DocumentoIdentidad + '], ';
             
-            -- Para campos que aceptan NULL (Email y Telefono), usamos ISNULL para evitar fallos lógicos
+            -- Manejo seguro de nulos para campos opcionales
             IF ISNULL(@OldEmail, '') <> ISNULL(@Email, '') 
                 SET @Cambios += 'Email [' + ISNULL(@OldEmail, 'Vacío') + ' -> ' + ISNULL(@Email, 'Vacío') + '], ';
             
@@ -229,7 +135,6 @@ BEGIN
             -- 4. Damos formato al mensaje final
             IF LEN(@Cambios) > 0
             BEGIN
-                -- Recortamos la última coma extra
                 SET @Cambios = LEFT(@Cambios, LEN(@Cambios) - 1);
                 SET @Detalle = 'Cambios en ' + @OldNombres + ': ' + @Cambios;
             END
@@ -250,4 +155,51 @@ BEGIN
         THROW;
     END CATCH
 END;
+GO
+
+-- 3. Eliminar Cliente
+CREATE PROCEDURE sp_Clientes_Eliminar
+    @ClienteID INT,
+    @Username VARCHAR(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        -- Extraemos el nombre antes de aplicar el soft delete
+        DECLARE @NombreCompleto VARCHAR(200);
+        SELECT @NombreCompleto = Nombres + ' ' + Apellidos 
+        FROM Clientes 
+        WHERE ClienteID = @ClienteID;
+
+        DECLARE @Detalle VARCHAR(255) = 'Borrado del cliente: ' + ISNULL(@NombreCompleto, 'Desconocido');
+
+        UPDATE Clientes 
+        SET Activo = 0 
+        WHERE ClienteID = @ClienteID;
+
+        INSERT INTO Bitacora (Accion, ClienteID, DetalleCambio, Username)
+        VALUES ('ELIMINAR', @ClienteID, @Detalle, @Username);
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END;
+GO
+
+-- =======================================================
+-- INSERCIÓN DE DATOS DE PRUEBA (USUARIOS)
+-- =======================================================
+
+-- 1. Usuario admin (Password: "1234")
+INSERT INTO Usuarios (Username, PasswordHash, NombreCompleto)
+VALUES ('admin', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Administrador Sistema');
+
+-- 2. Usuario fundamicro (Password: "12345")
+INSERT INTO Usuarios (Username, PasswordHash, NombreCompleto)
+VALUES ('fundamicro', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'Evaluador Fundamicro');
 GO

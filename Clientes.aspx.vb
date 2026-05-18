@@ -50,7 +50,12 @@ Public Class Clientes
     Protected Sub btnGuardar_Click(sender As Object, e As EventArgs)
         Dim id As Integer = Convert.ToInt32(hfID.Value)
         Dim accion As String = If(id = 0, "AGREGAR", "EDITAR")
-        svc.GuardarCliente(id, txtNombres.Text, txtApellidos.Text, txtDoc.Text, txtEmail.Text, txtTel.Text, User.Identity.Name, accion)
+
+        Dim emailParam As String = If(String.IsNullOrWhiteSpace(txtEmail.Text), Nothing, txtEmail.Text.Trim())
+        Dim telParam As String = If(String.IsNullOrWhiteSpace(txtTel.Text), Nothing, txtTel.Text.Trim())
+
+        svc.GuardarCliente(id, txtNombres.Text.Trim(), txtApellidos.Text.Trim(), txtDoc.Text.Trim(), emailParam, telParam, User.Identity.Name, accion)
+
         pnlFormulario.Visible = False
         lblMensaje.Visible = True
         lblMensaje.CssClass = "d-block mb-3 p-2 rounded text-center alert alert-success"
